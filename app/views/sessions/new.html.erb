@@ -1,5 +1,6 @@
-<h1>Create An Account</h1>
-<%= form_for @user do |f| %>
+<h1>Sign In</h1>
+
+<%= form_for @sign_in, url: sessions_path do |f| %>
   <% f.object.errors.full_messages.each do |error| %>
     <div style="color:brown"><%= error %></div>
   <% end %>

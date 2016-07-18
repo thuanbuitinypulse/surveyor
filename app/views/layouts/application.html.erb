@@ -9,6 +9,9 @@
   </head>
 
   <body>
+    <div>
+      User: <%= current_user.try(:email) %>
+    </div>
     <% flash.each do |key, value| %>
       <div style="border: 1px solid brown;"><%= value %></div>
     <% end %>

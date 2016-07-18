@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   def create
     build_user
     if @user.save
+      session[:user_id] = @user.id
       redirect_to users_path, notice: "User created."
     else
       render 'new'
