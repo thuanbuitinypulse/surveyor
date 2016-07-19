@@ -3,6 +3,10 @@ class SurveysController < ApplicationController
     build_survey_form
   end
 
+  def show
+    redirect_to action: 'edit'
+  end
+
   def create
     build_survey_form
     if @form.save
@@ -19,7 +23,11 @@ class SurveysController < ApplicationController
   def update
     load_survey_form
     if params[:add_question]
-      @form.questions << Question.new
+      @add_question_count = params[:add_question_count].to_i
+      @add_question_count += 1
+      @add_question_count.times do
+        @form.questions << Question.new
+      end
       render 'edit'
     else
       if @form.validate survey_params

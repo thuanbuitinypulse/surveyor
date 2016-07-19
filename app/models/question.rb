@@ -6,4 +6,9 @@ class Question < ApplicationRecord
   validates :type, inclusion: {in: types.keys }
 
   self.inheritance_column = nil
+
+  def self.type_options
+    keys = types.keys
+    keys.map(&:humanize).zip keys
+  end
 end

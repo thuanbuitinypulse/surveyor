@@ -9,23 +9,33 @@
         <%= f.text_field :title, placeholder: "Survey title", class: 'form-control' %>
       </div>
     </div>
+  </div>
 
-    <%= f.fields_for :questions do |fq| %>
+  <%= f.fields_for :questions do |fq| %>
+    <div class="card">
       <div class="card-block">
         <div class="form-group row">
           <div class="col-sm-10">
             <%= fq.text_field :title, placeholder: "Question", class: 'form-control' %>
           </div>
           <div class="col-sm-2">
-            <%= fq.select :type, Question.types.keys, {}, class: 'form-control' %>
+            <%= fq.select :type, Question.type_options, {}, class: 'form-control' %>
           </div>
         </div>
       </div>
-    <% end %>
-    <div class="card-block">
-      <%= f.submit "Save", class: 'btn btn-secondary pull-xs-left' %>
-      <%= f.button "Add Question", name: "add_question", class: 'btn btn-secondary pull-xs-right' %>
-      <div class="clearfix"></div>
+      <% if fq.object.persisted? %>
+        <div class="card-footer" style="text-align: right">
+          <%= link_to "Delete", fq.object, method: 'delete', class: 'btn btn-secondary' %>
+        </div>
+      <% end %>
     </div>
+  <% end %>
+  <% if @add_question_count %>
+    <%= hidden_field_tag :add_question_count, @add_question_count %>
+  <% end %>
+  <div class="card-footer">
+    <%= f.submit "Save", class: 'btn btn-secondary pull-xs-left' %>
+    <%= f.button "Add Question", name: "add_question", class: 'btn btn-secondary pull-xs-right' %>
+    <div class="clearfix"></div>
   </div>
 <% end %>
