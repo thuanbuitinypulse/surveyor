@@ -1,16 +1,7 @@
 <h1>New Survey</h1>
 
 <%= form_for @survey do |f| %>
-  <% if f.object.errors.any? %>
-    <div class="alert alert-danger">
-      <ul>
-        <% f.object.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+  <%= render "errors", object: f.object %>
   <div class="form-group">
     <%= f.text_field :title, placeholder: "Survey title", class: 'form-control' %>
   </div>

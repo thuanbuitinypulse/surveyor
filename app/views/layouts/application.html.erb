@@ -11,11 +11,11 @@
 
   <body>
     <div class="container">
-      <div>
+      <div class="well">
         User: <%= current_user.try(:email) %>
       </div>
       <% flash.each do |key, value| %>
-        <div style="border: 1px solid brown;"><%= value %></div>
+        <div class="alert alert-notice"><%= value %></div>
       <% end %>
       <%= yield %>
     </div>
