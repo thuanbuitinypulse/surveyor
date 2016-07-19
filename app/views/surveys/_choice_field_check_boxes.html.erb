@@ -1,0 +1,5 @@
+<div class="form-group form-inline">
+  <%= check_box_tag '', ''  %>
+  <%=  fc.text_field :content, placeholder: "Choice", class: 'form-control' %>
+  <%= link_to "&times;".html_safe, fc.object, method: 'delete', class: 'btn' %>
+</div>

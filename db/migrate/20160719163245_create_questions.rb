@@ -3,7 +3,7 @@ class CreateQuestions < ActiveRecord::Migration[5.0]
     create_table :questions do |t|
       t.string :title
       t.references :survey, foreign_key: true
-      t.string :type
+      t.integer :type
 
       t.timestamps
     end

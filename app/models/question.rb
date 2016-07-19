@@ -13,4 +13,8 @@ class Question < ApplicationRecord
     keys = types.keys
     keys.map(&:humanize).zip keys
   end
+
+  after_initialize do
+    self.type ||= QUESTION_TYPES[0]
+  end
 end

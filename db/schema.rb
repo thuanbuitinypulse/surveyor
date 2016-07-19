@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20160719192235) do
   create_table "questions", force: :cascade do |t|
     t.string   "title"
     t.integer  "survey_id"
-    t.string   "type"
+    t.integer  "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["survey_id"], name: "index_questions_on_survey_id", using: :btree
