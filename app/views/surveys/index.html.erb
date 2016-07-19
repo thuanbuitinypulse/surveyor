@@ -1,0 +1,9 @@
+<h1>Surveys</h1>
+
+<ul>
+  <% Survey.all.each do |survey| %>
+    <li><%= link_to survey.title || "No title", edit_survey_path(survey) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "New Survey", new_survey_path, class: 'btn btn-secondary' %>
