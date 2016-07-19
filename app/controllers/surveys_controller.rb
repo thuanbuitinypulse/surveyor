@@ -18,7 +18,8 @@ class SurveysController < ApplicationController
 
   def update
     load_survey
-    if @survey.update_attributes survey_params
+    if @survey.validate survey_params
+      @survey.save
       redirect_to edit_survey_path, notice: "Saved."
     else
       render 'edit'
@@ -28,14 +29,16 @@ class SurveysController < ApplicationController
   private
 
   def survey_params
-    params.require(:survey).permit(:title, :questions)
+    params.require(:survey).permit(:title, :questions) if params[:survey]
   end
 
   def build_survey
-    @survey = Survey.new
+    survey = Survey.new survey_params
+    @survey = SurveyForm.new survey
   end
 
   def load_survey
-    @survey = Survey.find params[:id]
+    survey = Survey.find params[:id]
+    @survey = SurveyForm.new survey
   end
 end

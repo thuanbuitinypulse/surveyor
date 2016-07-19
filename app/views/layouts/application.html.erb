@@ -15,7 +15,7 @@
         User: <%= current_user.try(:email) %>
       </div>
       <% flash.each do |key, value| %>
-        <div class="alert alert-notice"><%= value %></div>
+        <div class="alert alert-warning"><%= value %></div>
       <% end %>
       <%= yield %>
     </div>

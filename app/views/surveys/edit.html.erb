@@ -9,6 +9,20 @@
       </div>
       <%= link_to "Add Question", '/', class: 'btn btn-secondary' %>
     </div>
+    <% f.object.questions.each do |question| %>
+      <%= f.fields_for question do |fq| %>
+        <div class="card-block">
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <%= fq.text_field :title, placeholder: "Question", class: 'form-control' %>
+            </div>
+            <div class="col-sm-2">
+              <%= fq.select :type, Question.types, {}, class: 'form-control' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
     <div class="card-block">
       <%= f.submit "Save", class: 'btn btn-secondary' %>
     </div>
