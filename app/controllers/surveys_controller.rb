@@ -18,6 +18,7 @@ class SurveysController < ApplicationController
 
   def edit
     load_survey_form
+    @form.prepopulate!
   end
 
   def update
@@ -28,12 +29,14 @@ class SurveysController < ApplicationController
       @add_question_count.times do
         @form.questions << Question.new
       end
+      @form.prepopulate!
       render 'edit'
     else
       if @form.validate survey_params
         @form.save
         redirect_to edit_survey_path, notice: "Saved."
       else
+        @form.prepopulate!
         render 'edit'
       end
     end
@@ -42,7 +45,7 @@ class SurveysController < ApplicationController
   private
 
   def survey_params
-    params.require(:survey).permit(:title, questions_attributes: [:title, :type]) if params[:survey]
+    params.require(:survey).permit(:title, questions_attributes: [:title, :type, choices_attributes: [:content]]) if params[:survey]
   end
 
   def build_survey_form

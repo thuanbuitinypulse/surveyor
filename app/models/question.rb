@@ -1,5 +1,7 @@
 class Question < ApplicationRecord
   belongs_to :survey
+  has_many :choices, dependent: :destroy
+
   validates :title, presence: true
   QUESTION_TYPES = [:short_answer, :multiple_choice, :check_boxes]
   enum type: QUESTION_TYPES
