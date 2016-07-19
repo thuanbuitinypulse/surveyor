@@ -1,6 +1,6 @@
 <h1>New Survey</h1>
 
-<%= form_for @survey do |f| %>
+<%= form_for @form do |f| %>
   <%= render "errors", object: f.object %>
   <div class="form-group">
     <%= f.text_field :title, placeholder: "Survey title", class: 'form-control' %>
