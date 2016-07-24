@@ -1,5 +1,5 @@
 <% question.answer_wrappers.each do |answer| %>
-  <%= f.fields_for :answer_wrappers, answer do |fa| %>
+  <%= f.fields_for :answers, answer do |fa| %>
     <div id="<%= dom_id answer.choice %>">
         <%= fa.hidden_field :id %>
         <%= fa.hidden_field :question_id %>

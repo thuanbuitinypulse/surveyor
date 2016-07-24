@@ -23,12 +23,6 @@ end
 class ResponseForm < Reform::Form
   property :ip
 
-  # collection :answers,
-  #   prepopulator: :set_up_answers,
-  #   skip_if: :skip_blank_answers,
-  #   form: AnswerForm,
-  #   populate_if_empty: Answer
-  #
   def questions
     survey.questions
   end
@@ -41,29 +35,22 @@ class ResponseForm < Reform::Form
     model.survey
   end
 
-  # def answers_for(question)
-  #   answers.select{|e| e.question == question}
-  # end
-  #
-  # def set_up_answers(options)
-  #   questions.each do |question|
-  #     question.choices.each do |choice|
-  #       found_answers = answers_for(question).select{|e| e.choice == choice}
-  #       if found_answers.empty?
-  #         self.answers << Answer.new(choice: choice, question: question)
-  #       end
-  #     end
-  #   end
-  # end
-
-  def skip_blank_answers(options)
-    options[:fragment]['content'].blank?
-  end
-
-
   def response_questions
     @resposne_questions ||= questions.map do |question|
       ResponseQuestion.new(model, question)
+    end
+  end
+
+  # TODO: move saving outside validate
+  def validate(attrs)
+    super
+    attrs['questions'].each do |index, hash|
+      if id = hash['answers'].delete('id').presence
+        answer = Answer.find id
+      else
+        answer = Answer.new response: model
+      end
+      answer.update_attributes!(hash['answers'])
     end
   end
 end

@@ -28,12 +28,11 @@ class ResponsesController < ApplicationController
     load_survey
     response = Response.find params[:id]
     @form = ResponseForm.new(response)
-    if @form.validate response_params
+    if @form.validate params[:response].to_hash
       @form.save
       redirect_to edit_survey_response_path(@form.survey, @form), notice: "Saved."
     else
-      @form.prepopulate!
-      render 'redit'
+      render 'edit'
     end
   end
 
@@ -43,6 +42,11 @@ class ResponsesController < ApplicationController
   end
 
   def response_params
-    params.require(:response).permit(answers_attributes: [:id, :question_id, :choice_id, :content]) if params[:response]
+    # TODO update permit to work with ResponseQuestion
+    # "response"=>
+    #   {"questions"=>
+    #     {"1"=>{"answers"=>{"id"=>"3", "question_id"=>"1", "choice_id"=>"4", "content"=>"i'm a creep"}},
+    #      "2"=>{"answers"=>{"id"=>"", "question_id"=>"2", "choice_id"=>"5", "content"=>"red"}}}},
+    params.require(:response).permit! if params[:response]
   end
 end
