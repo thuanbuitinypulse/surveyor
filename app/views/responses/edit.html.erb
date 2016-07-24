@@ -1,0 +1,8 @@
+<h1>Survey: <%= @form.survey_title %></h1>
+
+<%= form_for [@form.survey, @form] do |f| %>
+  <% @form.questions.each do |question| %>
+    <%= render 'responses/question', question: question, f: f, answers: @form.answers_for(question) %>
+  <% end %>
+  <%= f.submit "Submit", class: 'btn btn-secondary' %>
+<% end %>

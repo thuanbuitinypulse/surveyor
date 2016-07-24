@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   resources :choices, only: [:destroy]
   resources :questions, only: [:destroy]
-  resources :surveys
+  resources :surveys do
+    resources :responses
+  end
   resources :sessions, only: [:new, :create]
   resources :users
   root 'surveys#index'

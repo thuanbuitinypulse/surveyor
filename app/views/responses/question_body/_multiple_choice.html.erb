@@ -1,0 +1,13 @@
+<%= f.fields_for :answers, answers do |fa| %>
+  <% answer = fa.object %>
+  <div id="<%= dom_id answer.choice %>">
+      <%= fa.hidden_field :id %>
+      <%= fa.hidden_field :question_id %>
+      <%= fa.hidden_field :choice_id %>
+      <label class="c-input c-radio">
+        <%= fa.radio_button :content, answer.choice.content %>
+        <span class="c-indicator"></span>
+        <%= answer.choice.content %>
+      </label>
+  </div>
+<% end %>

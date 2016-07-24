@@ -34,7 +34,7 @@ class SurveysController < ApplicationController
     else
       if @form.validate survey_params
         @form.save
-        redirect_to edit_survey_path, notice: "Saved."
+        redirect_to edit_survey_path(@form), notice: "Saved."
       else
         @form.prepopulate!
         render 'edit'
