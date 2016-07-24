@@ -1,9 +1,10 @@
-<%= f.fields_for :answers, answers do |fa| %>
-  <% answer = fa.object %>
-  <div id="<%= dom_id answer.choice %>">
-    <%= fa.hidden_field :id %>
-    <%= fa.hidden_field :question_id %>
-    <%= fa.hidden_field :choice_id %>
-    <%= fa.text_field :content, class: 'form-control' %>
-  </div>
+<% question.answer_wrappers.each do |answer| %>
+  <%= f.fields_for :answer_wrappers, answer do |fa| %>
+    <div id="<%= dom_id answer.choice %>">
+      <%= fa.hidden_field :id %>
+      <%= fa.hidden_field :question_id %>
+      <%= fa.hidden_field :choice_id %>
+      <%= fa.text_field :content, class: 'form-control' %>
+    </div>
+  <% end %>
 <% end %>

@@ -1,4 +1,7 @@
-<h1>Edit</h1>
+<h1>
+  Questions |
+  <%= link_to "Responses", survey_responses_path(@form) %>
+</h1>
 
 <%= form_for @form do |f| %>
   <%= render "errors", object: f.object %>

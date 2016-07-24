@@ -1,4 +1,8 @@
 class ResponsesController < ApplicationController
+  def index
+    load_survey
+  end
+
   def new
     load_survey
   end
@@ -39,6 +43,6 @@ class ResponsesController < ApplicationController
   end
 
   def response_params
-    params.require(:response).permit(answers_attributes: [:question_id, :choice_id, :content]) if params[:response]
+    params.require(:response).permit(answers_attributes: [:id, :question_id, :choice_id, :content]) if params[:response]
   end
 end
