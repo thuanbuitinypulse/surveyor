@@ -23,6 +23,7 @@ class SurveysController < ApplicationController
   end
 
   def edit
+    authorize
     load_survey_form
     @form.prepopulate!
   end

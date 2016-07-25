@@ -15,4 +15,10 @@ class ApplicationController < ActionController::Base
       render text: 'Access Denied.', status: 403
     end
   end
+
+  def authorize
+    if current_user && !current_user.admin?
+      redirect_to root_path, alert: "Insufficient Permission."
+    end
+  end
 end

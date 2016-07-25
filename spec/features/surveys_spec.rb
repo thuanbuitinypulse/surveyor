@@ -16,7 +16,7 @@ RSpec.describe "Surveys", type: :feature do
     it "denies access for guests" do
       visit '/surveys/new'
       # save_and_open_page
-      expect(page).to have_content("Access Denied")
+      expect(page).to have_content("Access Denied.")
       expect(page.status_code).to eq 403
     end
 
@@ -25,6 +25,27 @@ RSpec.describe "Surveys", type: :feature do
       sign_in(user.email, user.password)
       visit '/surveys/new'
       expect(page).to have_content "New Survey"
+    end
+  end
+
+  describe "GET /surveys/:id/edit" do
+    let(:non_admin) { User.create(email: 'harley@example.com', password: 'asdfasdf', admin: false) }
+    let(:admin) { User.create(email: 'admin@example.com', password: 'asdfasdf', admin: true) }
+
+    before do
+      @survey = Survey.create title: "hello"
+    end
+
+    it "denies access for non admin" do
+      sign_in(non_admin.email, non_admin.password)
+      visit edit_survey_path(@survey)
+      expect(page).to have_content("Insufficient Permission.")
+    end
+
+    it "allows admin" do
+      sign_in(admin.email, admin.password)
+      visit edit_survey_path(@survey)
+      expect(page).to have_content("Edit Survey")
     end
   end
 end
