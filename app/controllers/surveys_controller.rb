@@ -5,6 +5,9 @@ class SurveysController < ApplicationController
     @surveys = Survey.all
   end
 
+  def index
+  end
+
   def new
     build_survey_form
   end
@@ -23,7 +26,7 @@ class SurveysController < ApplicationController
   end
 
   def edit
-    authorize
+    authorize controller_name, action_name
     load_survey_form
     @form.prepopulate!
   end

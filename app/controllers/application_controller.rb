@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def authorize
-    unless current_permission.allow?
+  def authorize(controller, action)
+    unless current_permission.allow?(controller, action)
       redirect_to root_path, alert: "Insufficient Permission."
     end
   end
