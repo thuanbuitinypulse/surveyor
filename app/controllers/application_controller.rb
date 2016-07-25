@@ -9,4 +9,10 @@ class ApplicationController < ActionController::Base
       @current_user = User.find_by_id session[:user_id]
     end
   end
+
+  def authenticate_user!
+    unless current_user
+      render text: 'Access Denied.', status: 403
+    end
+  end
 end
