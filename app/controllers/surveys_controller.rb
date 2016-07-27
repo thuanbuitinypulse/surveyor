@@ -1,10 +1,14 @@
 class SurveysController < ApplicationController
+  def index
+    @surveys = Survey.all
+  end
+
   def new
     build_survey_form
   end
 
   def show
-    redirect_to action: 'edit'
+    redirect_to new_survey_response_path(params[:id])
   end
 
   def create

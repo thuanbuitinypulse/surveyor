@@ -1,9 +1,13 @@
 <h1>New Survey</h1>
 
-<%= form_for @form do |f| %>
-  <%= render "errors", object: f.object %>
-  <div class="form-group">
-    <%= f.text_field :title, placeholder: "Survey title", class: 'form-control' %>
+<div class="card">
+  <div class="card-block">
+    <%= form_for @form do |f| %>
+      <%= render "errors", object: f.object %>
+      <div class="form-group">
+        <%= f.text_field :title, placeholder: "Survey title", class: 'form-control' %>
+      </div>
+      <%= f.button :submit, class: 'btn btn-secondary'%>
+    <% end %>
   </div>
-  <%= f.button :submit, class: 'btn btn-secondary'%>
-<% end %>
+</div>

@@ -1,5 +1,16 @@
-<h1>New Response for <%= @survey.title %></h1>
+<h1>New Response</h1>
 
-<%= form_for [@survey, Response.new] do |f| %>
-  <%= f.submit "Start Now", class: 'btn btn-secondary' %>
-<% end %>
+<div class="card">
+  <div class="card-header">
+    <h3><%= @survey.title %></h3>
+  </div>
+  <div style="background: #efefef;height: 200px;overflow-y: auto; padding: 10px">
+      <h4>Terms Of Service</h4>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div>
+  <div class="card-block">
+    <%= form_for [@survey, Response.new] do |f| %>
+      <%= f.submit "Start Now", class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>
