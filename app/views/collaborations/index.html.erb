@@ -1,0 +1,25 @@
+<h1>Sharing Settings</h1>
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Add A Collaborator</h3>
+  </div>
+  <div class="card-block">
+    <%= form_for [@survey, @collaboration] do |f| %>
+      <div class="form-inline">
+        <%= f.select :user_id, options_for_user, {}, class: 'form-control' %>
+        <%= f.select :role, Collaboration.roles.keys, {}, class: 'form-control' %>
+        <%= f.submit "Add", class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<ul class="list-group">
+  <% Collaboration.where(survey_id: @survey.id).each do |collaboration| %>
+    <li class="list-group-item">
+      <span class="tag tag-default tag-pill pull-xs-right"><%= collaboration.role %></span>
+      <%= collaboration.user.email %>
+    </li>
+  <% end %>
+</ul>

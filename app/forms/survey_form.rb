@@ -15,4 +15,13 @@ class SurveyForm < Reform::Form
   def set_up_questions(options)
     self.questions << Question.new if questions.size < 1
   end
+
+  def save(user)
+    super
+
+    if self.model.users.blank?
+      collaboration = Collaboration.create(survey: self.model, user: user)
+      collaboration.owner!
+    end
+  end
 end
