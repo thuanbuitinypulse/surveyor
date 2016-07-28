@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 module AuthHelper
-  def sign_in(email, password)
+  def log_in(email, password)
     visit new_session_path
     fill_in "Email", with: email
     fill_in "Password", with: password
-    click_button "Sign In"
-    expect(page).to have_content "Signed in!"
+    click_button "Log In"
+    expect(page).to have_content "Logged in!"
   end
 end
 
@@ -22,7 +22,7 @@ RSpec.describe "Surveys", type: :feature do
 
     it "allows users" do
       user = User.create(email: 'harley@example.com', password: 'asdfasdf', admin: true)
-      sign_in(user.email, user.password)
+      log_in(user.email, user.password)
       visit '/surveys/new'
       expect(page).to have_content "New Survey"
     end
@@ -37,15 +37,15 @@ RSpec.describe "Surveys", type: :feature do
     end
 
     it "denies access for non admin" do
-      sign_in(non_admin.email, non_admin.password)
+      log_in(non_admin.email, non_admin.password)
       visit edit_survey_path(@survey)
       expect(page).to have_content("Insufficient Permission.")
     end
 
     it "allows admin" do
-      sign_in(admin.email, admin.password)
+      log_in(admin.email, admin.password)
       visit edit_survey_path(@survey)
-      expect(page).to have_content("Edit Survey")
+      expect(page).to have_content("Questions")
     end
   end
 end

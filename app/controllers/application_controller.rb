@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     unless current_user
-      render text: 'Access Denied.', status: 403
+      render plain: 'Access Denied.', status: 403
     end
   end
 
