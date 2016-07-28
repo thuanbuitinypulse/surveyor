@@ -1,0 +1,10 @@
+<h1>Survey: <%= @form.survey_title %></h1>
+
+<%= form_for [@form.survey, @form] do |f| %>
+  <% @form.response_questions.each do |response_question| %>
+    <%= f.fields_for 'questions[]', response_question do |frq| %>
+      <%= render 'responses/question', question: response_question, f: frq %>
+    <% end %>
+  <% end %>
+  <%= f.submit "Submit", class: 'btn btn-primary btn-lg' %>
+<% end %>

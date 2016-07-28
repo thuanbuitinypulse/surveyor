@@ -14,7 +14,12 @@ class QuestionForm < Reform::Form
   end
 
   def set_up_choices(options)
-    # always add an extra choice to render
-    self.choices << Choice.new
+    case type.to_sym
+    when :short_answer
+      # don't add choices
+    else
+      # always add an extra choice to render
+      self.choices << Choice.new
+    end
   end
 end

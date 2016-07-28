@@ -7,10 +7,15 @@ class SessionsController < ApplicationController
     build_sign_in
     if @sign_in.valid?
       session[:user_id] = @sign_in.user_id
-      redirect_to users_path, notice: "Signed in!"
+      redirect_to users_path, notice: "Logged in!"
     else
       render 'new'
     end
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path, alert: "Logged out."
   end
 
   private

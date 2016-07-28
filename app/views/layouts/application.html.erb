@@ -9,9 +9,28 @@
 
   <body>
     <div class="container">
-      <div class="well">
-        User: <%= current_user.try(:email) %>
-      </div>
+      <nav class="navbar navbar-light bg-faded">
+        <a class="navbar-brand" href="/">Surveyor</a>
+        <ul class="nav navbar-nav">
+          <li class="nav-item">
+            <%= link_to "Home", root_path, class: 'nav-link' %>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav pull-xs-right">
+          <li class="nav-item">
+            <% if current_user %>
+              <%= link_to "Log out", logout_path, class: 'nav-link' %>
+            <% else %>
+              <%= link_to "Log in", new_session_path, class: 'nav-link' %>
+            <% end %>
+          </li>
+          <% unless current_user %>
+            <li class="nav-item">
+              <%= link_to "Sign Up", new_user_path, class: 'nav-link' %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
       <% flash.each do |key, value| %>
         <div class="alert alert-warning"><%= value %></div>
       <% end %>

@@ -1,10 +1,14 @@
 class SurveysController < ApplicationController
+  def index
+    @surveys = Survey.all
+  end
+
   def new
     build_survey_form
   end
 
   def show
-    redirect_to action: 'edit'
+    redirect_to new_survey_response_path(params[:id])
   end
 
   def create
@@ -34,7 +38,7 @@ class SurveysController < ApplicationController
     else
       if @form.validate survey_params
         @form.save
-        redirect_to edit_survey_path, notice: "Saved."
+        redirect_to edit_survey_path(@form), notice: "Saved."
       else
         @form.prepopulate!
         render 'edit'
