@@ -1,0 +1,35 @@
+<h1>Sharing Settings</h1>
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Add A Collaborator</h3>
+  </div>
+  <div class="card-block">
+    <%= form_for [@survey, @collaboration] do |f| %>
+      <div class="form-inline">
+      <%= f.select :user_id, User.all.map{|e| [e.email, e.id]}, {}, class: 'form-control' %>
+      <%= f.select :role, Collaboration.roles.keys, {}, class: 'form-control' %>
+      <%= f.submit "Add", class: 'btn btn-secondary' %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead class="thead thead-default">
+    <th>Email</th>
+    <th>Role</th>
+    <th>Actions</th>
+  </thead>
+  <tbody>
+    <% @survey.collaborations.each do |collab| %>
+      <tr>
+        <td><%= collab.email %></td>
+        <td><%= collab.role %></td>
+        <td><%= link_to "Delete", collab, class: 'btn btn-sm btn-secondary', method: 'delete' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
