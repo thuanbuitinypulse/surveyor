@@ -2,7 +2,7 @@ class SurveysController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
 
   def index
-    @surveys = Survey.all
+    @surveys = AccessibleSurvey.new(current_user).all
   end
 
   def new
