@@ -1,6 +1,7 @@
 <h1>
   Questions |
-  <%= link_to "Responses", survey_responses_path(@form) %>
+  <%= link_to "Responses", survey_responses_path(@form) %> |
+  <%= link_to "Take", new_survey_response_path(@form) %>
 </h1>
 
 <%= form_for @form do |f| %>
