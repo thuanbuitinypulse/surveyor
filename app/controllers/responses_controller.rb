@@ -30,7 +30,7 @@ class ResponsesController < ApplicationController
     @form = ResponseForm.new(response)
     if @form.validate params[:response].to_hash
       @form.save
-      redirect_to edit_survey_response_path(@form.survey, @form), notice: "Saved."
+      redirect_to root_path, notice: "Thank you!"
     else
       render 'edit'
     end

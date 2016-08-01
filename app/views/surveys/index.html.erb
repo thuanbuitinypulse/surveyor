@@ -16,9 +16,10 @@
         <td><%= link_to survey.title || "No title", survey %></td>
         <td><%= pluralize survey.responses_count, 'response' %></td>
         <td>
-          <%= link_to 'View', survey, class: 'btn btn-secondary' %>
-          <%= link_to 'Edit', edit_survey_path(survey), class: 'btn btn-secondary' %>
-          <%= link_to 'Responses', survey_responses_path(survey), class: 'btn btn-secondary' %>
+          <%= link_to 'View', survey, class: 'btn btn-sm btn-secondary' %>
+          <%= link_to 'Edit', edit_survey_path(survey), class: 'btn btn-sm btn-secondary' %>
+          <%= link_to 'Responses', survey_responses_path(survey), class: 'btn btn-sm btn-secondary' %>
+          <%= link_to 'Collaborators', survey_collaborations_path(survey), class: 'btn btn-sm btn-secondary' %>
         </td>
         <td><%= time_ago_in_words survey.updated_at %></td>
         <td><%= time_ago_in_words(survey.last_response_at) if survey.last_response_at %></td>

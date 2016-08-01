@@ -1,6 +1,7 @@
 class SurveyForm < Reform::Form
   property :title
   validates :title, presence: true
+  delegate :create_owner!, to: :model
 
   collection :questions,
     skip_if: :skip_blank_questions,

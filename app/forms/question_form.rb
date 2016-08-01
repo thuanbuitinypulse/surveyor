@@ -17,6 +17,7 @@ class QuestionForm < Reform::Form
     case type.to_sym
     when :short_answer
       # don't add choices
+      self.choices << Choice.new if choices.length == 0
     else
       # always add an extra choice to render
       self.choices << Choice.new

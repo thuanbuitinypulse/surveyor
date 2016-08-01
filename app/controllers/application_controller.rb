@@ -12,12 +12,12 @@ class ApplicationController < ActionController::Base
 
   def authenticate_user!
     unless current_user
-      render plain: 'Access Denied.', status: 403
+      redirect_to new_session_path, alert: "Please log in"
     end
   end
 
-  def authorize(controller, action)
-    unless current_permission.allow?(controller, action)
+  def authorize(resource)
+    unless current_permission.allow?(controller_name, action_name, resource)
       redirect_to root_path, alert: "Insufficient Permission."
     end
   end
