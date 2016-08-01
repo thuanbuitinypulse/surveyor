@@ -16,6 +16,7 @@ class SurveysController < ApplicationController
   def create
     build_survey_form
     if @form.save
+      @form.create_owner!(current_user)
       redirect_to edit_survey_path(@form)
     else
       render 'new'
@@ -23,8 +24,8 @@ class SurveysController < ApplicationController
   end
 
   def edit
-    authorize controller_name, action_name
     load_survey_form
+    authorize @form.model
     @form.prepopulate!
   end
 

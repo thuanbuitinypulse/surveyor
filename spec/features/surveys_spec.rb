@@ -16,8 +16,7 @@ RSpec.describe "Surveys", type: :feature do
     it "denies access for guests" do
       visit '/surveys/new'
       # save_and_open_page
-      expect(page).to have_content("Access Denied.")
-      expect(page.status_code).to eq 403
+      expect(page).to have_content("Please log in")
     end
 
     it "allows users" do

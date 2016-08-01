@@ -1,4 +1,6 @@
 class CollaborationsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     load_survey
     @collaboration = Collaboration.new
