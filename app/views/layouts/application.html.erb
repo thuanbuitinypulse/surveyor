@@ -3,6 +3,7 @@
   <head>
     <title>Surveyor</title>
     <%= csrf_meta_tags %>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -43,5 +44,6 @@
         <%= yield %>
       </div>
     </div>
+    <%= javascript_include_tag 'mdb', 'data-turbolinks-eval': 'false' %>
   </body>
 </html>
