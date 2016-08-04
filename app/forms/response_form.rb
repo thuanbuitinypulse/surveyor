@@ -21,6 +21,7 @@ class ResponseQuestion
 end
 
 class ResponseForm < Reform::Form
+  attr_accessor :answers
   property :ip
 
   def questions
@@ -44,13 +45,17 @@ class ResponseForm < Reform::Form
   # TODO: move saving outside validate
   def validate(attrs)
     super
+    self.answers = []
     attrs['questions'].each do |index, hash|
-      if id = hash['answers'].delete('id').presence
-        answer = Answer.find id
-      else
-        answer = Answer.new response: model
+      hash['answers'].each do |answer_hash|
+        if id = answer_hash.delete('id').presence
+          answer = Answer.find id
+        else
+          answer = Answer.new response: model
+        end
+        answer.update_attributes(answer_hash)
+        self.answers << answers
       end
-      answer.update_attributes!(hash['answers'])
     end
   end
 end
