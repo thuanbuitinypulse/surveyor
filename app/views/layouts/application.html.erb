@@ -40,9 +40,9 @@
       <% flash.each do |key, value| %>
         <div class="alert alert-warning"><%= value %></div>
       <% end %>
-      <div class="container">
-        <%= yield %>
-      </div>
+    </div>
+    <div class="container" style="margin-top: 20px">
+      <%= yield %>
     </div>
     <%= javascript_include_tag 'mdb', 'data-turbolinks-eval': 'false' %>
   </body>

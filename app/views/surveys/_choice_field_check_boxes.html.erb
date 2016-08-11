@@ -1,7 +1,10 @@
 <div class="form-group form-inline">
-  <%= check_box_tag '', ''  %>
+  <label class="c-input c-checkbox">
+    <%= check_box_tag '', ''  %>
+    <span class="c-indicator"></span>
+  </label>
   <%=  fc.text_field :content, placeholder: "Choice", class: 'form-control' %>
   <% if fc.object.persisted? %>
-    <%= link_to "&times;".html_safe, fc.object, method: 'delete', class: 'btn' %>
+    <%= link_to "&times;".html_safe, fc.object, method: 'delete', class: 'btn btn-secondary' %>
   <% end %>
 </div>
