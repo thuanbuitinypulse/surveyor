@@ -22,7 +22,9 @@
             <% question.choices.each do |choice| %>
               <div>
                 <% response.answers_for(question: question, choice: choice).each do |answer| %>
-                  <%= answer.content %>(<%= answer.id %>)
+                  <span data-answer-id="<%= answer.id %>">
+                    <%= answer.content %>
+                  </span>
                 <% end %>
               </div>
             <% end %>
