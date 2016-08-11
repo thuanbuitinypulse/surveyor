@@ -3,7 +3,8 @@
   <% f.object.errors.full_messages.each do |error| %>
     <div style="color:brown"><%= error %></div>
   <% end %>
+  <%= f.label :email %>
   <%= f.text_field :email, placeholder: "Email" %>
   <%= f.password_field :password, placeholder: "Password" %>
-  <%= f.submit %>
+  <%= f.submit "Create An Account", class: 'btn btn-primary' %>
 <% end %>
